@@ -11,7 +11,7 @@ from gi.repository import AppIndicator3 as appindicator
 from gi.repository import GObject as gobject
 import signal
 import os
-import urllib
+import urllib.request, urllib.parse, urllib.error
 import json
 
 APPINDICATOR_ID = "cryptocoin-indicator"
@@ -36,8 +36,8 @@ def quit(source):
 # Update BTC with BitFinex
 def update_btcusd_bitfinex():
     url = r"https://api.bitfinex.com/v1/ticker/btcusd"
-    response = urllib.urlopen(url)
-    data = json.loads(response.read())
+    response = urllib.request.urlopen(url)
+    data = json.loads(response.read().decode())
     price = data["last_price"]
     price = str(round(float(price), 3))
     mystring = "BTCUSD: " + price
@@ -50,8 +50,8 @@ def set_update_btcusd_bitfinex(source):
 # Update ETH with BitFinex
 def update_ethbtc_bitfinex():
     url = r"https://api.bitfinex.com/v1/ticker/ethbtc"
-    response = urllib.urlopen(url)
-    data = json.loads(response.read())
+    response = urllib.request.urlopen(url)
+    data = json.loads(response.read().decode())
     price = data["last_price"]
     price = str(round(float(price), 7))
     mystring = "ETHBTC: " + price
@@ -63,8 +63,8 @@ def set_update_ethbtc_bitfinex(source):
 
 def update_ltcusd_bitfinex():
     url = r"https://api.bitfinex.com/v1/ticker/ltcusd"
-    response = urllib.urlopen(url)
-    data = json.loads(response.read())
+    response = urllib.request.urlopen(url)
+    data = json.loads(response.read().decode())
     price = data["last_price"]
     price = str(round(float(price), 4))
     mystring = "LTCUSD: " + price
@@ -79,8 +79,8 @@ def set_update_ltcusd_bitfinex(source):
 ###############
 def update_btcusd_btce():
     url = r"https://btc-e.com/api/3/ticker/btc_usd"
-    response = urllib.urlopen(url)
-    data = json.loads(response.read())
+    response = urllib.request.urlopen(url)
+    data = json.loads(response.read().decode())
     price = data["btc_usd"]["last"]
     price = str(round(float(price), 3))
     mystring = "BTCUSD: " + price
@@ -92,8 +92,8 @@ def set_update_btcusd_btce(source):
 
 def update_ethbtc_btce():
     url = r"https://btc-e.com/api/3/ticker/eth_btc"
-    response = urllib.urlopen(url)
-    data = json.loads(response.read())
+    response = urllib.request.urlopen(url)
+    data = json.loads(response.read().decode())
     price = data["eth_btc"]["last"]
     price = str(round(float(price), 7))
     mystring = "ETHBTC: " + price
@@ -105,8 +105,8 @@ def set_update_ethbtc_btce(source):
 
 def update_ltcusd_btce():
     url = r"https://btc-e.com/api/3/ticker/ltc_usd"
-    response = urllib.urlopen(url)
-    data = json.loads(response.read())
+    response = urllib.request.urlopen(url)
+    data = json.loads(response.read().decode())
     price = data["ltc_usd"]["last"]
     price = str(round(float(price), 4))
     mystring = "LTCUSD: " + price
